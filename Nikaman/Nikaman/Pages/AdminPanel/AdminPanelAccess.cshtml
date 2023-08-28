@@ -1,0 +1,28 @@
+﻿@page
+@model Nikaman.Pages.AdminPanel.AdminPanelAccessModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    @{
+        Layout = "/Pages/_LayoutAdminPanel/Index.cshtml";
+    }
+    <form class="form-preview" method="post" asp-page-handler="submit">
+        <label asp-for="P._Password">Please, enter a secret code got from administrator</label>
+        <input type="password" maxlength="30"  asp-for="P._Password"/>
+        <span  class="text-danger" asp-validation-for="P._Password"></span>
+        <span><i class="ri-eye-line"></i></span>
+        <button type="submit" class="send">Send</button>
+    </form>
+    <script>
+        var a = document.getElementsByClassName("text-danger")[0];
+        var data = '@ViewData["Password"]';
+        if (data.includes("again")) {
+            a.innerText = data;
+        }
+    </script>
+</body>
+</html>

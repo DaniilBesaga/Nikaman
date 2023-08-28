@@ -1,0 +1,130 @@
+﻿@page
+@model Nikaman.Pages.MyWorks.IndexModel
+@{
+}
+@using Nikaman.Models;
+@using System.Diagnostics;
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="/css/Portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="type">
+            <h2>Anime Edits</h2>
+            <div class="items">
+                @{
+                    List<Task> L = new List<Task>(Model.exps.Count);
+                    for (int i = 0; i < Model.exps.Count; i++)
+                    {
+                        if(i<3)
+                        {
+                            Exp? e = Model.exps.FirstOrDefault(a => a.Id == i + 1);
+                            string str = Convert.ToBase64String(e.Preview);
+                            <div class="item" style="@(e.Id == 1 ? "padding-bottom: 30px; opacity: 0.5; margin-left: 110px; transform: translateZ(-100px);"
+                        : (e.Id == 2 ? "padding-bottom:70px; position:absolute; z-index:1111;left:50%; transform:translate(-50%, 0);"
+                        : "padding-bottom: 30px; opacity: 0.5; margin-left: 60px; transform: translateZ(-100px);"))">
+                                <img src="data:image/png;base64, @str" width="500" height="300" preload="auto" />
+                                <video style="width:400px; height:400px; display:none;" autoplay></video>
+                                <i class="ri-play-circle-line play-mid"></i>
+                                <p id="title">@(e.Id == 2 ? e.Title : "")</p>
+                                <div>
+                                    <p class="likes"><i class="ri-heart-line"></i> @(e.Id == 2 ? e.Likes : "")</p>
+                                    <p class="views"><i class="ri-eye-line"></i>@(e.Id == 2 ? e.Views : "")</p>
+                                </div>
+                                <button class="hide-player">Hide player</button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item" style="padding-bottom: 30px; opacity: 0.5; margin-left: 60px; transform: translateZ(-100px);">
+                                <img src="" width="500" height="300" preload="auto" />
+                                <video style="width:400px; height:400px; display:none;" autoplay></video>
+                                <i class="ri-play-circle-line play-mid"></i>
+                                <p></p>
+                                <div>
+                                    <p class="likes"><i class="ri-heart-line"></i> </p>
+                                    <p class="views"><i class="ri-eye-line"></i></p>
+                                </div>
+                                <button class="hide-player">Hide player</button>
+                            </div>
+                        }
+                    }
+                   
+                }
+              
+            </div>
+            <i class="ri-arrow-left-s-line prevb"></i>
+            <i class="ri-arrow-right-s-line nextb"></i>
+        </div>
+
+
+
+        <div class="type" style="margin-top:40px;">
+            <h2>Videos</h2>
+            <div class="items">
+
+                <div class="item" style="padding-bottom: 30px; opacity: 0.5; margin-left: 200px; transform: translateZ(-100px);">
+                    <video src="" width="400" height="400" autoplay preload="auto"></video>
+
+                </div>
+
+                <div class="item" style="padding-bottom:30px; position:absolute; z-index:1111;left:50%; transform:translate(-50%, 0)">
+                    <video src="" width="400" height="400" autoplay preload="auto"></video>
+                    <i class="ri-play-circle-line play-mid"></i>
+                    <p>Luffy getting stronger!</p>
+                    <div>
+                        <p class="likes"><i class="ri-heart-line"></i> 40k+</p>
+                        <p class="views"><i class="ri-eye-line"></i>1M+</p>
+                    </div>
+                    <button class="hide-player">Hide player</button>
+                </div>
+
+                <div class="item" style="padding-bottom: 30px; opacity: 0.5; margin-left: 30px; transform: translateZ(-100px);">
+                    <video src="" width="400" height="400" autoplay preload="auto"></video>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="type" style="margin-top:40px;">
+            <h2>Photoshop</h2>
+            <div class="items">
+
+                <div class="item" style="padding-bottom: 30px; opacity: 0.5; margin-left: 200px; transform: translateZ(-100px);">
+                    <video src="" width="400" height="400" autoplay preload="auto"></video>
+
+                </div>
+
+                <div class="item" style="padding-bottom:30px; position:absolute; z-index:1111;left:50%; transform:translate(-50%, 0)">
+                    <video src="" width="400" height="400" autoplay preload="auto"></video>
+                    <i class="ri-play-circle-line play-mid"></i>
+                    <p>Luffy getting stronger!</p>
+                    <div>
+                        <p class="likes"><i class="ri-heart-line"></i> 40k+</p>
+                        <p class="views"><i class="ri-eye-line"></i>1M+</p>
+                    </div>
+                    <button class="hide-player">Hide player</button>
+                </div>
+
+                <div class="item" style="padding-bottom: 30px; opacity: 0.5; margin-left: 30px; transform: translateZ(-100px);">
+                    <video src="" width="400" height="400" autoplay preload="auto"></video>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/portfolioscript.js"></script>
+</body>
+</html>

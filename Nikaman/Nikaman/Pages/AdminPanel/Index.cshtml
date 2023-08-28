@@ -1,0 +1,462 @@
+﻿@page
+@model Nikaman.Pages.AdminPanel.IndexModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/css/videosstyle.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/imgs/logovadik.png" />
+            <div class="logo-text">
+                <p>Nikaman</p>
+                <p>Admin Panel</p>
+            </div>
+        </div>
+    </header>
+    <div class="message">
+        <p>Please change at least one field!</p>
+    </div>
+    <div class="loading-container">
+        <div class="loading">
+            Loading.<br />Please wait.<br /><br />
+            <img src="/imgs/loading.gif" />
+        </div>
+    </div>
+    <section class="content">
+        <div class="navigation">
+            <button class="works-content-b">Works Content</button>
+            <button class="add-work-b">Add New Work</button>
+            <button class="order-list-b">Order List</button>
+        </div>
+        <div class="grid">
+            <div class="grid-h">
+                <div>
+                    <p>Video</p>
+                </div>
+
+                <div>
+                    <p>Title</p>
+                </div>
+
+                <div>
+                    <p>Likes</p>
+
+                </div>
+
+                <div>
+                    <p>Views</p>
+
+                </div>
+
+                <div>
+                </div>
+
+            </div>
+
+          
+            @{
+                foreach(var e in Model.works)
+                {
+                    string str = Convert.ToBase64String(e.Preview);
+                    <div class="grid-body">
+                        <div>
+                            <img src="data:image/png;base64, @str" />
+                        </div>
+
+                        <div>
+                            <p class="title">@e.Title</p>
+                        </div>
+
+                        <div>
+                            <div class="media">
+                                <i class="ri-tiktok-fill"></i>
+                                <i class="ri-youtube-fill"></i>
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                            <div class="views-likes">
+                                <p>@(e.Likes_TT == null ? '-' : e.Likes_TT)</p>
+                                <p>@(e.Likes_YT == null ? '-' : e.Likes_YT)</p>
+                                <p>@(e.Likes_INST == null ? '-' : e.Likes_INST)</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="media">
+                                <i class="ri-tiktok-fill"></i>
+                                <i class="ri-youtube-fill"></i>
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                            <div class="views-likes">
+                                <p>-</p>
+                                <p>-</p>
+                                <p>-</p>
+                            </div>
+                        </div>
+
+                        <div class="edit">
+                            <p>Remove<i class="ri-delete-bin-2-line"></i></p>
+                            <p class="approvement">Click one more time to approve</p>
+                            <p>Edit<i class="ri-edit-line"></i></p>
+                        </div>
+
+                    </div>
+                    @Html.AntiForgeryToken()
+                    <div class="edit-content" style="display:none">
+                        <div class="edit-container">
+                            <label for=@($"content-{e.Id}") class="drop-container">
+                                <span class="drop-title">Drop a main content here</span>
+                                or
+                                <input type="file" id=@($"content-{e.Id}") accept="image/*" name="Video"/>
+                            </label>
+                        </div>
+                        <div class="edit-container">
+                            <div>
+                                <label for=@($"preview-{e.Id}") class="drop-container">
+                                    <span class="drop-title">Drop a preview here</span>
+                                    or
+                                    <input type="file" id=@($"preview-{e.Id}") accept="image/*" name="Preview"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="edit-text">
+                            <div>
+                                <p>Change title</p>
+                                <input type="text" class="input-title" id=@($"title-text-{e.Id}") />
+                            </div>
+                            <div>
+                                <p style="margin-top:15px;">Change likes count</p>
+                                <div>
+                                    <div class="media-m">
+                                        <i class="ri-tiktok-fill"></i>
+                                        <i class="ri-youtube-fill"></i>
+                                        <i class="ri-instagram-fill"></i>
+                                    </div>
+                                    <div class="views-likes" style="margin-top:10px">
+                                        <input type="text" id=@($"likes-tt-text-{e.Id}") />
+                                        <input type="text" id=@($"likes-yt-text-{e.Id}") />
+                                        <input type="text" id=@($"likes-inst-text-{e.Id}") />
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top:15px;">Change views count</p>
+                            <div>
+                                <div class="media-m">
+                                    <i class="ri-tiktok-fill"></i>
+                                    <i class="ri-youtube-fill"></i>
+                                    <i class="ri-instagram-fill"></i>
+                                </div>
+                                <div class="views-likes" style="margin-top:10px">
+                                    <input type="text" id=@($"views-tt-text-{e.Id}") />
+                                    <input type="text" id=@($"views-yt-text-{e.Id}") />
+                                    <input type="text" id=@($"views-inst-text-{e.Id}") />
+                                </div>
+                            </div>
+
+                            <div class="edit-buttons">
+                                <button><i class="ri-close-line"></i>Discard</button>
+                                <button><i class="ri-checkbox-circle-line"></i>Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+
+
+        @{
+            int count = Model.works.Count+1;
+        <div class="edit-content" id="add-work-block">
+                        <div class="edit-container">
+                            <label for=@($"content-{count}") class="drop-container">
+                                <span class="drop-title">Drop a main content here</span>
+                                or
+                                <input type="file" id=@($"content-{count}") accept="video/*" name="Video"/>
+                            </label>
+                        </div>
+                        <div class="edit-container">
+                            <div>
+                                <label for=@($"preview-{count}") class="drop-container">
+                                    <span class="drop-title">Drop a preview here</span>
+                                    or
+                                    <input type="file" id=@($"preview-{count}") accept="image/*" name="Preview"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="edit-text">
+                            <div>
+                                <p>Set title</p>
+                                <input type="text" class="input-title" id=@($"title-text-{count}") />
+                            </div>
+                            <div>
+                                <p style="margin-top:15px;">Set likes count</p>
+                                <div>
+                                    <div class="media-m">
+                                        <i class="ri-tiktok-fill"></i>
+                                        <i class="ri-youtube-fill"></i>
+                                        <i class="ri-instagram-fill"></i>
+                                    </div>
+                                    <div class="views-likes" style="margin-top:10px">
+                                       <input type="text" id=@($"likes-tt-text-{count}") />
+                                        <input type="text" id=@($"likes-yt-text-{count}") />
+                                        <input type="text" id=@($"likes-inst-text-{count}") />
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top:15px;">Set views count</p>
+                            <div>
+                                <div class="media-m">
+                                    <i class="ri-tiktok-fill"></i>
+                                    <i class="ri-youtube-fill"></i>
+                                    <i class="ri-instagram-fill"></i>
+                                </div>
+                                <div class="views-likes" style="margin-top:10px">
+                                    <input type="text" id=@($"views-tt-text-{count}") />
+                                    <input type="text" id=@($"views-yt-text-{count}") />
+                                    <input type="text" id=@($"views-inst-text-{count}") />
+                                </div>
+                            </div>
+
+                            <div class="edit-buttons">
+                                <button><i class="ri-close-line"></i>Discard</button>
+                                <button id="add-work-submit"><i class="ri-checkbox-circle-line"></i>Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+            }
+        
+
+
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function submitForm(index, page) {
+            var ind = index + 1;
+            
+            var title = $(`#title-text-${ind}`).val();
+            if(page=='add-work' && title=="")
+            {
+                $('.message p').text('Add title!');
+                $('.message').slideDown(1500);
+                setTimeout(function () { $('.message').slideUp(1500) }, 2500);
+                return;
+            }
+
+            var video = $(`#content-${ind}`).prop('files')[0];
+            var preview = $(`#preview-${ind}`).prop('files')[0];
+
+            if (page == 'add-work' && $(`#content-${ind}`).prop('files').length==0) {
+                $('.message p').text('Add a video!');
+                $('.message').slideDown(1500);
+                setTimeout(function () { $('.message').slideUp(1500) }, 2500);
+                return;
+            }
+
+            if (page == 'add-work' && $(`#preview-${ind}`).prop('files').length == 0) {
+                $('.message p').text('Add a preview!');
+                $('.message').slideDown(1500);
+                setTimeout(function () { $('.message').slideUp(1500) }, 2500);
+                return;
+            }
+
+            var likestt = $(`#likes-tt-text-${ind}`).val();
+            var likesyt = $(`#likes-yt-text-${ind}`).val();
+            var likesinst = $(`#likes-inst-text-${ind}`).val();
+            
+            var viewstt = $(`#views-tt-text-${ind}`).val();
+            var viewsyt = $(`#views-yt-text-${ind}`).val();
+            var viewsinst = $(`#views-inst-text-${ind}`).val();
+
+           
+
+            if (title == "" && likestt == "" && likesyt == "" && likesinst == "" && viewstt == "" && viewsyt == "" && viewsinst == "") {
+                $('.message').slideDown(1500);
+                console.log('q');
+                setTimeout(function () { $('.message').slideUp(1500) }, 2500);
+            }
+            else {
+                var formData = new FormData();
+                formData.append('Title', title);
+
+                formData.append('LikesTT', likestt);
+                formData.append('LikesYT', likestt);
+                formData.append('LikesInst', likesinst);
+
+                formData.append('ViewsTT', viewstt);
+                formData.append('ViewsYT', viewsyt);
+                formData.append('ViewsInst', viewsinst);
+
+                formData.append('Video', video);
+                formData.append('Preview', preview);
+                formData.append('Id', ind);
+                //Title: title, Likes_TT: likestt, Likes_YT: likesyt, Likes_INST: likesinst, Views_TT: viewstt, Views_YT: viewsyt,
+                //    Views_INST: viewsinst, Video: video, Preview: preview
+                if(page=='works'){
+                $.ajax({
+                    type: 'PUT',
+                    url: '/AdminPanel?handler=Update',
+                    data: formData,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    headers:
+                    {
+                        "RequestVerificationToken": $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        $('.message').css('background', 'lightgreen');
+                        $('.message p').text('Success! Refresh the page');
+                        $('.message').slideDown(1500);
+                        setTimeout(function () { $('.message').slideUp(1500) }, 2500);
+                    }
+                });
+                }
+                if(page=='add-work')
+                {
+                    $.ajax({
+                        type: 'post',
+                        url: '/AdminPanel?handler=AddWork',
+                        data: formData,
+                        contentType: false,
+                        enctype: 'multipart/form-data',
+                        processData: false,
+                        headers:
+                        {
+                            "RequestVerificationToken": $('input:hidden[name="__RequestVerificationToken"]').val()
+                        },
+                        success:function(response){
+
+                        }
+                    });
+                }
+            }
+        }
+        $(function () {
+            setTimeout(function () { $('.loading-container').css('display', 'none') }, 0);
+            $('.edit-content').each(function(){
+                $(this).css('display', 'none');
+            });
+            $('.edit p:last-of-type').each(function (index, elem) {
+                
+                $(this).click(function () {
+                    if ($('.edit-content').eq(index).css('display') == 'none') {
+                        $('.edit-content').eq(index).slideDown(1000);
+                        $('.grid-body').eq(index + 1).css('marginTop', '430px');
+                    }
+                    else {
+                        $('.grid-body').eq(index + 1).css('marginTop', '20px');
+                        $('.edit-content').eq(index).slideUp(1000);
+                    }
+                });
+            });
+            
+
+
+           $('#add-work-block input:first-of-type').change(function(){
+                var fileSizeMB = ($(this).prop('files')[0].size / (1024 * 1024)).toFixed(2);
+                if (fileSizeMB < 5) {
+                    console.log($('#add-work-block div:nth-of-type(2)'));
+                    $('#add-work-block > div:nth-of-type(2)').css('visibility', 'hidden');
+                    
+                }
+
+           });
+
+
+
+            $('.edit-buttons button:last-of-type').each(function(index, elem){
+                $(this).click(function(){
+                    if (index == $('.edit-buttons button:last-of-type').length-1)
+                        submitForm(index, 'add-work');
+                    else
+                        submitForm(index, 'works');
+                });
+            });
+
+            //var edit = document.querySelector(".edit p:last-of-type");
+            //edit.addEventListener("click", function () {
+            //    if (document.querySelector(".edit-content").style.display == "none") {
+            //        $('.edit-content').slideDown(1000);
+            //        $('.grid-body').eq(1).css('marginTop', '430px');
+            //    }
+            //    else {
+            //        $('.grid-body').eq(1).css('marginTop', '20px');
+            //        $('.edit-content').slideUp(1000);
+
+            //    }
+            //});
+            var count = 0;
+            document.querySelector(".edit p:first-of-type").addEventListener("click", function () {
+                if (count != 0) {
+
+                }
+                else {
+                    count++;
+                    document.querySelector(".approvement").style.display = "block";
+                    console.log(document.querySelector(".approvement").style.display);
+                    document.querySelector(".edit i:first-of-type").style.color = "red";
+                    document.querySelector(".edit i:first-of-type").classList.add("blink");
+                }
+            });
+            var position = $(this).scrollTop();
+            $(window).scroll(function () {
+               
+                //if (position < $(this).scrollTop()) {
+                //    $('header').slideDown(1000);
+                //} 
+                //else if ($(this).scrollTop()<100) {
+                //    $('header').slideDown(1000);
+                //}
+                //else {
+                //    $('header').slideUp(1000);
+                //}
+                //position = $(this).scrollTop();
+                if ($(this).scrollTop() < 150) {
+                    $('header').slideDown(1000);
+                }
+                else {
+                    $('header').slideUp(1000);
+                }
+            });
+                
+
+
+            $('.add-work-b').click(function(){
+                $('.grid').css('display', 'none');
+                $('#add-work-block').css('display', 'block');
+                $('#add-work-block').css('marginLeft', '220px');
+                $('#add-work-block').css('marginTop', '-20px');
+                var bts = $('.navigation button');
+                bts.each(function(index, elem){
+                    if(index!=$('.add-work-b').index()){
+                        $(this).css('background-color', '#b1cee3');
+                        $(this).css('color', 'white');
+                    }
+                    else
+                    {
+                        $(this).css('background-color', 'white');
+                        $(this).css('color', '#b1cee3');
+                    }
+                });
+            });
+            
+            
+        });
+        
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,206 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+body
+{
+    background-image:url("https://wallpapers.com/images/hd/light-orange-5us8jzp69w7wcd76.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.form-window {
+    margin: 100px 30% 50px 30%;
+    background-color: #081b29;
+    padding:20px 0px 0px 0px;
+}
+
+.form-window > p:first-of-type{
+    color:white;
+    font-size:35px;
+    text-align:center;
+    margin-top:20px;
+}
+
+.links-l-r img {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    top:-10px;
+}
+
+.form {
+    margin-top: 20px !important;
+    padding: 10px 20px 20px 20px;
+}
+
+    .form label {
+        font-weight: 600;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 19px;
+        display: block;
+        margin-top: 15px;
+        color: #00abf0;
+    }
+
+.form input, select {
+        display: inline-block;
+        height: 50px;
+        width: 100%;
+        border-radius: 0;
+        margin-top: 10px;
+        font-size: 20px;
+        padding-left: 10px;
+        border: 1px solid gray;
+    }
+
+.form input[type=file]
+{
+    border-radius:10px;
+    padding-left:0;
+    padding:10px;
+    height:auto;
+    color:white;
+    cursor:pointer;
+}
+
+.form input[type=file]::file-selector-button
+{
+    padding:10px 15px 10px 15px;
+    background:transparent;
+    color:#00abf0;
+    border-radius:10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border:2px solid #00abf0;
+    font-size:16px;
+    cursor:pointer;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.form input[type=file]::file-selector-button:hover
+{
+    cursor:pointer;
+    background:aqua;
+}
+
+a {
+    cursor: pointer
+}
+
+textarea
+{
+    width:100%;
+    height:200px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top:10px;
+    margin-top:15px;
+}
+
+.checkbox {
+    margin-top: 10px;
+    margin-bottom:20px;
+}
+
+    .checkbox input {
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+    }
+
+    .checkbox p {
+        display: inline-block;
+        position:relative;
+        top:-1px;
+        left:8px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #00abf0;
+    }
+
+.send {
+    width: 100px !important;
+    color: #009ec4;
+    border: 1px solid #009ec4 !important;
+    padding: 0 !important;
+    background-color: white;
+    cursor: pointer;
+}
+
+.account-sign-up-link {
+    display: flex;
+}
+
+.footer-info > div, .footer-license {
+    margin-top: 20px;
+}
+
+.footer-info a {
+    color: #009ec4;
+    font-size: 13px;
+    margin-top: 1px;
+    margin-left: 6px;
+}
+
+.footer-info p, .footer-license p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: gray;
+}
+
+.name {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+form span, .password span {
+    font-size: 13px;
+    margin-top: 3px;
+    color: red;
+}
+
+.drop-container {
+  position: relative !important;
+  display: flex !important;
+  gap: 10px !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444 !important;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+  cursor:pointer;
+}
+
+.drop-container:hover {
+  background: #113b59;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444 !important;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center !important;
+  transition: color .2s ease-in-out;
+}

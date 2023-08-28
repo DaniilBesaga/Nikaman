@@ -1,0 +1,56 @@
+﻿@page
+@model Nikaman.Pages.OfferForm.FormOffer;
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link href="~/css/OfferForm.css" type="text/css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div class="form-window">
+        <div class="links-l-r">
+            <img src="C:\Users\1\Downloads\logovadik.png" />
+        </div>
+        <p>Please, fill the form</p>
+        <div style="height:50px; margin:0 0 -50px 0; background:transparent"></div>
+        <div class="form">
+            <form method="post">
+                <label asp-for="Email">Email<span style="color:red">*</span></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+                <label asp-for="Instagram">Instagram<span style="color:red">(optional)</span></label>
+                <input asp-for="Instagram" />
+                <span asp-validation-for="Instagram" class="text-danger"></span>
+
+                <label asp-for="Type">Kind of order<span style="color:red">*</span></label>
+                <span asp-validation-for="Type" class="text-danger"></span>
+                <select asp-for="Type">
+                    <option disabled selected style="display:none;"></option>
+                    <option>Anime Edit</option>
+                    <option>Video</option>
+                    <option>Photoshop</option>
+                    <option>Other</option>
+                </select>
+                <label asp-for="AddInfo">Please provide more information about your wishes<span style="color:red">*</span></label>
+                <textarea name="comment" id="comment" placeholder="No more 300 symbols" maxlength="300"></textarea>
+                <span asp-validation-for="AddInfo" class="text-danger"></span>
+
+                <label asp-for="Files">Link to files(Google disk, etc.)<span style="color:red">*</span></label>
+                <input asp-for="Files"/>
+                <span asp-validation-for="Files" class="text-danger"></span>
+                <div class="checkbox">
+                    <input type="checkbox" asp-for="PersonalData" />
+                    <p>I agree to the processing of my personal data</p>
+                    <span asp-validation-for="PersonalData" class="text-danger"></span>
+                </div>
+                <input type="submit" value="Continue" class="send" />
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

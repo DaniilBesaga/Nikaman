@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/css/adminpanelstyle.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="preview">
+        <div class="logo-preview">
+            <img src="~/imgs/logovadik.png" />
+            Nikaman
+        </div>
+        @RenderBody();
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var flag = true;
+            $('.form-preview i').click(function () {
+                flag == flag ? true : false;
+                var input = $('.form-preview input');
+                input = flag == true ? input.attr('type', 'text') : input.attr('type', 'password');
+                flag == true ? $('.form-preview i').attr('class', 'ri-eye-off-line') : $('.form-preview i').attr('class', 'ri-eye-line');
+                console.log(input.type);
+                flag = !flag;
+            });
+            $('.send').click(function () {
+                if ($('.form-preview input').value != '1234') {
+                    $('.form-preview').css('display', 'none');
+                    $('.access').css('display', 'block');
+                }
+            })
+        });
+    </script>
+</body>
+</html>
